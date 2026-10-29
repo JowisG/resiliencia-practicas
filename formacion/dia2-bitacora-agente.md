@@ -3,12 +3,12 @@
 ## Índice
 1. [Lab 4](#1-lab-4)
 2. [Lab 6](#2-lab-6)
-3. [Lab 7](#3-lab-8)
+3. [Lab 8](#3-lab-8)
 4. [PRs](#4-prs)
+5. [Autocomprobación](#5-autocomprobación)
 
 ## 1. Lab 4
-En su mayoría si coinciden, GitHub tiene 163 vulnerabilidades (14 Low, 65 Moderate, 61 High, 23 Critical) encontradas, mientras trivy a encontrado 157 vulnerabilidades (13 low, 63 Medium, 58 High, 23 Critical).
-En este caso todas son alertas, ya que los que estamos comparando son las "*dependabots alerts*" y como bien indica son alertas. En el caso trivy, también son alertas, ya que son vulnerabilidades que estan activas y son concidas en el código, no son pisibles furturas vulnerabilidades que en ese caso serían avisos que no estamos comparando.
+En su mayoría si coinciden, GitHub tiene 163 vulnerabilidades (14 Low, 65 Moderate, 61 High, 23 Critical) encontradas, mientras trivy a encontrado 157 vulnerabilidades (13 low, 63 Medium, 58 High, 23 Critical), eso por las alertas. En cuanto a los avisos, github tiene 156 y trivy tiene 150. Por lo que se puede ver qeu GitHub detecta 6 más.
 
 ## 2. Lab 6
 Gitleaks no me dice que tenga "leaks" por mucho que intente probar tokens de github u otras claves secretas de todas formas contesto según lo que debería pasar.
@@ -23,6 +23,7 @@ Como ya he dicho sigue siendo accesible si se vuelve al commit pasado, a menos q
 Primero lo podría en .gitignore para que el archivo sea ignorado por git, luego para evitar cualquier incidente con el .gitignore se puede poner GitLeaks como pre-commit, es decir, que se ejecute GitLeaks cuando hagamos un commit y bloquee los que puedan tener leaks.
 
 ## 3. Lab 8
+
 <table>
     <table style="border: 1px solid white">
     <tr >
@@ -175,7 +176,7 @@ Lab 8:
 - Análisis: ~1h
 - Cambio: 1min
 - Verificación: 1min
-- PR y cierre: 14min
+- PR y cierre: 4min (Se debe a que el ./mvnw verify ya tenia todo descargado y tardo menos)
         </td>
     </tr>
     <tr>
@@ -190,5 +191,24 @@ Lab 8:
 </table>
 
 ## 4. PRs
-**Lab 5**: https://github.com/JowisG/resiliencia-practicas/pull/2
-**Lab 8**: https://github.com/JowisG/resiliencia-practicas/pull/1
+**Lab 5**: https://github.com/JowisG/resiliencia-practicas/pull/1
+
+**Lab 8**: https://github.com/JowisG/resiliencia-practicas/pull/2
+
+## 5. Autocomprobación
+
+1. **¿En qué dos momentos interviene una persona en el ciclo de remediación, y por qué son dos y no uno?**
+
+Se interviene cuando se hace commit, para comprobar que lo que se ha realizado este bien y no rompa el proyecto, y cuando se hace una PR, para evitar que no se va integrar errores en el proyecto. Es decir, se revisa para cuando se hacen cambios, comprobando que se haya realizado bien, y cuando se quieran integrar esos cambios, para ver que se integre bien con el resto del proyecto.
+
+2. **¿Qué diferencia hay entre que el agente diga «corregido» y que la herramienta de seguridad cierre la alerta?**
+
+Que un agente diga *corregido* solo significa que al error que estaba corrigiendo se le ha aplicado un arreglo, pero no necesariamente esta corregido. Si una herramienta de seguridad cierra la alerta quiere decir que tras pasar un escaneo para comprobar las vulnerabilidades de nuevo y ve que realmente ya no esta la vulnerabilidad, entonces se cierra la alerta. Es decir, el agente solo te dice que ha terminado y esta por ver, mientra el cierre de alerta es la prueba de que está corregido.
+
+3. **¿Qué parte del Lab 5 no ha hecho el asistente por sí solo en el Lab 8?**
+
+El asistente no ha relizado la decisión del plan a seguir, ni tampoco el push ni PR del código al repositorio, pero si hecho el analisis y la corrección del código.
+
+4. **¿Ha sido más rápido con el asistente? ¿En qué fases sí y en cuáles no?**
+
+El asistente no ha sido necesariamente más rápido, en este caso más lento debido a que no tenia bien lo de la "integración con el terminal". En general, el análisis lo ha realizado de forma más exahustiva y precisa de lo que yo sería capaz, denado me muchas más opciones de que hacer, la corrección ha sido más rápida y la verificación tambien.
